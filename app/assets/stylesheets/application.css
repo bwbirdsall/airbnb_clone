@@ -11,3 +11,20 @@
  *= require_self
  *= require_tree .
  */
+
+.btn {
+  margin: 10px auto 10px auto;
+}
+
+#logo {
+  font-size: 34px;
+  color: white;
+}
+
+a#logo:hover {
+  text-decoration: none;
+}
+
+.content {
+  margin-top: 65px;
+}
