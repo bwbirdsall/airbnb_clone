@@ -1,4 +1,5 @@
 GlobalFriends::Application.routes.draw do
   devise_for :users
-  # root to: '/'
+  resources :properties
+  root to: 'properties#index'
 end
