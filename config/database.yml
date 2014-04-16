@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: global_friends_development
+
+test:
+  adapter: postgresql
+  database: global_friends_test
