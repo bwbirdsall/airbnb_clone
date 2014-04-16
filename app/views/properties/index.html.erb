@@ -1,0 +1,6 @@
+<h3>Hello, Global Friend! Here are all of the properties you could rent.</h3>
+
+<% @properties.each do |property| %>
+  <%= link_to property.name, property_path %><br/>
+  <%= property.description %>
+<% end %>

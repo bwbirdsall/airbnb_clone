@@ -28,3 +28,7 @@ a#logo:hover {
 .content {
   margin-top: 65px;
 }
+
+.sessiontext {
+  color: sandybrown !important;
+}
