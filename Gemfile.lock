@@ -27,6 +27,8 @@ GEM
       tzinfo (~> 0.3.37)
     addressable (2.3.6)
     arel (4.0.2)
+    autonumeric-rails (1.9.19.0)
+      jquery-rails (>= 2.0.2)
     bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -168,6 +170,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autonumeric-rails
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller

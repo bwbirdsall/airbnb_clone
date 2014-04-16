@@ -14,6 +14,7 @@ gem 'faker'
 gem 'launchy'
 gem 'cancan'
 gem 'paperclip'
+gem 'autonumeric-rails'
 
 group :development do
   gem 'better_errors'
