@@ -1,2 +1,15 @@
 <h3><%= @property.name %></h3>
 <p><%= @property.description %></p>
+<p><%= @property.location %></p>
+<p><%= @property.rental_type %></p>
+<p>Price per Day: <%= humanized_money_with_symbol @property.price_per_day %></p>
+<% if @property.price_week %>
+  <p>Price per Week: <%= humanized_money_with_symbol @property.price_per_week %></p>
+<% end %>
+<% if @property.price_month %>
+  <p>Price per Month: <%= humanized_money_with_symbol @property.price_per_month %></p>
+<% end %>
+<p><%= link_to "Return to GlobalFriends Home", root_url, class: 'btn btn-success btn-sm' %>
+<% if current_user == @property.user %>
+  <%= link_to "Edit Your Listing", edit_property_path(@property), class: 'btn btn-warning btn-sm' %>
+<% end %>

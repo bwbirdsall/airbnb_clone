@@ -11,7 +11,7 @@ class PropertiesController < ApplicationController
   def create
     @property = Property.new property_params
     if @property.save
-      flash[:notice] = "Your property was uploaded!  Please hold tight while we verify all the information! (SHould take less than 36 months)"
+      flash[:notice] = "Your property was uploaded!  Please hold tight while we verify all the information! (Should take less than 36 months)"
       redirect_to property_path(@property)
     else
       render 'new'
@@ -22,6 +22,19 @@ class PropertiesController < ApplicationController
     @property = Property.find(params[:id])
   end
 
+  def edit
+    @property = Property.find(params[:id])
+  end
+
+  def update
+    @property = Property.find(params[:id])
+    if @property.update(property_params)
+      flash[:notice] = "Your property was updated! Thank you for keeping its information current!"
+      redirect_to property_path(@property)
+    else
+      render 'edit'
+    end
+  end
 
 private
   def property_params

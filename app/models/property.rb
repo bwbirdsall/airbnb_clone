@@ -8,5 +8,9 @@ class Property < ActiveRecord::Base
   validates :price_day, presence: true
   validates :rental_type, presence: true
 
+  monetize :price_day, as: "price_per_day"
+  monetize :price_week, as: "price_per_week"
+  monetize :price_month, as: "price_per_month"
+
 
 end
