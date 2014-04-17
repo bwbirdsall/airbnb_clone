@@ -1,18 +1,18 @@
 <h3><%= @property.name %></h3>
-<p><%= @property.description %></p>
-<p><%= @property.location %></p>
-<p><%= @property.rental_type %></p>
+<p><span class="descriptiontext">Description: <br /></span><%= @property.description %></p>
+<p><span class="descriptiontext">Location: <br /></span><%= @property.location %></p>
+<p><span class="descriptiontext">Type of Rental: <br /></span><%= @property.rental_type %></p>
 
-<p><% @property.pictures.each do |picture| %>
+<p><span class="descriptiontext">Pictures of this Property:<br /></span><% @property.pictures.each do |picture| %>
   <%= image_tag picture.image(:medium) %>
 <% end %></p>
 
-<p>Price per Day: <%= humanized_money_with_symbol @property.price_per_day %></p>
+<p><span class="descriptiontext">Price per Day:</span> <%= humanized_money_with_symbol @property.price_per_day %></p>
 <% if @property.price_week %>
-  <p>Price per Week: <%= humanized_money_with_symbol @property.price_per_week %></p>
+  <p><span class="descriptiontext">Price per Week:</span> <%= humanized_money_with_symbol @property.price_per_week %></p>
 <% end %>
 <% if @property.price_month %>
-  <p>Price per Month: <%= humanized_money_with_symbol @property.price_per_month %></p>
+  <p><span class="descriptiontext">Price per Month:</span>  <%= humanized_money_with_symbol @property.price_per_month %></p>
 <% end %>
 <p><%= link_to "Return to GlobalFriends Home", root_url, class: 'btn btn-success btn-sm' %>
 <% if current_user == @property.user %>

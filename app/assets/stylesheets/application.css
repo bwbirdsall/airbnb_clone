@@ -32,3 +32,7 @@ a#logo:hover {
 .sessiontext {
   color: sandybrown !important;
 }
+
+.descriptiontext {
+  color: slategray;
+}
