@@ -28,9 +28,11 @@ class PropertiesController < ApplicationController
 
   def create
     @property = Property.new property_params
-    picture = @property.pictures.new(:user_id => params[:property][:user_id], :property_id => @property.id)
-    picture.image = params[:property][:image]
-    picture.save
+    if !params[:property][:image].nil?
+      picture = @property.pictures.new(:user_id => params[:property][:user_id], :property_id => @property.id)
+      picture.image = params[:property][:image]
+      picture.save
+    end
     if @property.save
       flash[:notice] = "Your property was uploaded!  Please hold tight while we verify all the information! (Should take less than 36 months)"
       redirect_to property_path(@property)
