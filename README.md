@@ -16,7 +16,7 @@ _____________________
 
 [+] As a renter, I want detailed information on various aspects of the properties I could rent.
 
-[-] As an owner, I want to add pictures for my properties to show off their accomodations.
+[+] As an owner, I want to add pictures for my properties to show off their accomodations.
 
 [-] As a renter, I want to be able to leave reviews of properties where I have stayed.
 
