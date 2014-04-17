@@ -14,12 +14,12 @@
   </div>
   <div class="col-sm-4">
     <span class="descriptiontext"><p>Filter Properties by:</p></span>
-    <p><%= link_to "Expensive", properties_path(:expensive => true), class: "btn btn-success btn-sm" %> </p>
-    <p><%= link_to "Reasonable", properties_path(:reasonable => true), class: "btn btn-success btn-sm" %> </p>
-    <p><%= link_to "Cheap", properties_path(:cheap => true), class: "btn btn-success btn-sm" %> </p>
-    <p><span class="descriptiontext">Property Type:</span>
+    <p>
       <%= form_for Property.new, method: 'get' do |f|%>
-        <%= f.select :rental_type, options_for_select([["Entire Place"], ["Private Room"], ["Shared Room"]]) %>
+        <%= f.label :location, "Location: " %>
+        <%= f.select :location, options_for_select([["All"], ["Expensive"], ["Reasonable"], ["Cheap"]]) %>
+        <%= f.label :rental_type, "Rental Type: " %>
+        <%= f.select :rental_type, options_for_select([["All"], ["Entire Place"], ["Private Room"], ["Shared Room"]]) %>
         <%= f.submit "Filter", class: 'btn btn-success btn-sm' %>
       <% end %>
     </p>

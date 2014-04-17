@@ -3,22 +3,22 @@ require 'pry'
 class PropertiesController < ApplicationController
 
   def index
-    if params[:expensive]
-      @properties = Property.expensive
-    elsif params[:reasonable]
-      @properties = Property.reasonable
-    elsif params[:cheap]
-      @properties = Property.cheap
-    elsif params[:property]
-      if params[:property][:rental_type] == "Entire Place"
-        @properties = Property.where(:rental_type => "Entire Place")
-      elsif params[:property][:rental_type] == "Private Room"
-        @properties = Property.where(:rental_type => "Private Room")
-      else
-        @properties = Property.where(:rental_type => 'Shared Room')
+    @properties = Property.all
+
+    if params[:property].present?
+      if params[:property][:rental_type] != "All"
+        @properties = @properties.where(rental_type: params[:property][:rental_type])
       end
-    else
-      @properties = Property.all
+      # this uses the location name not because it is location, but because there is no single field that holds a string for price.
+      if params[:property][:location] == "Expensive"
+        @properties = @properties.where("price_day >= 50")
+      end
+      if params[:property][:location] == "Reasonable"
+        @properties = @properties.where("price_day < 50 AND price_day > 20")
+      end
+      if params[:property][:location] == "Cheap"
+        @properties = @properties.where("price_day <= 50")
+      end
     end
   end
 
@@ -63,6 +63,8 @@ class PropertiesController < ApplicationController
   end
 
 private
+
+
   def property_params
     params.require(:property).permit(:name, :location, :description, :user_id, :price_day, :price_week, :price_month, :rental_type)
   end
