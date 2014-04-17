@@ -1,7 +1,11 @@
 <h3>Hello, Global Friend! Here are all of the properties you could rent.</h3>
 
 <% @properties.each do |property| %>
-  <p><%= link_to property.name, property_path(property) %><br/>
+  <p>
+  <% if !property.pictures.first.nil? %>
+    <%= link_to image_tag(property.pictures.first.image(:thumb)), property_path(property)   %><br />
+  <% end %>
+  <%= link_to property.name, property_path(property) %><br/>
   <%= property.description %></p>
 <% end %>
 
