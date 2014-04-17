@@ -10,6 +10,7 @@ class PropertiesController < ApplicationController
 
   def create
     @property = Property.new property_params
+    @property.pictures << Picture.create(property_params[:image])
     if @property.save
       flash[:notice] = "Your property was uploaded!  Please hold tight while we verify all the information! (Should take less than 36 months)"
       redirect_to property_path(@property)
@@ -28,6 +29,9 @@ class PropertiesController < ApplicationController
 
   def update
     @property = Property.find(params[:id])
+    picture = @property.pictures.new(:user_id => params[:property][:user_id], :property_id => @property.id)
+    picture.image = params[:property][:image]
+    picture.save
     if @property.update(property_params)
       flash[:notice] = "Your property was updated! Thank you for keeping its information current!"
       redirect_to property_path(@property)

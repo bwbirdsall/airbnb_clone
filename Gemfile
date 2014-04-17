@@ -13,7 +13,7 @@ gem 'devise'
 gem 'faker'
 gem 'launchy'
 gem 'cancan'
-gem 'paperclip'
+gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'autonumeric-rails'
 gem 'money-rails'
 

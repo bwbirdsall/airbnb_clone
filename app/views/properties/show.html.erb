@@ -2,6 +2,11 @@
 <p><%= @property.description %></p>
 <p><%= @property.location %></p>
 <p><%= @property.rental_type %></p>
+
+<p><% @property.pictures.each do |picture| %>
+  <%= image_tag picture.image(:medium) %>
+<% end %></p>
+
 <p>Price per Day: <%= humanized_money_with_symbol @property.price_per_day %></p>
 <% if @property.price_week %>
   <p>Price per Week: <%= humanized_money_with_symbol @property.price_per_week %></p>

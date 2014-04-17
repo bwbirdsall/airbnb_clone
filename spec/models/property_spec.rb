@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Property do
   it { should belong_to :user }
+  it { should have_many :pictures }
+
   it { should validate_uniqueness_of(:name).scoped_to(:location)}
   it { should validate_presence_of :name }
   it { should validate_presence_of :location }

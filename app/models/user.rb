@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :properties
+  has_many :pictures
 
   after_create :send_signup_confirmation
 

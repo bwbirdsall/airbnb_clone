@@ -1,5 +1,6 @@
 class Property < ActiveRecord::Base
   belongs_to :user
+  has_many :pictures
 
   validates_uniqueness_of :name, scope: :location
   validates :name, presence: true
