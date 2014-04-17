@@ -42,4 +42,8 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
   config.include Paperclip::Shoulda::Matchers
+
+  config.after(:suite) do
+    FileUtils.rm_rf(Dir["#{Rails.root}/public/system/test"])
+  end
 end
