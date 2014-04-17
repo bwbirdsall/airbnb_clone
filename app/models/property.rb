@@ -13,5 +13,17 @@ class Property < ActiveRecord::Base
   monetize :price_week, as: "price_per_week", allow_nil: true
   monetize :price_month, as: "price_per_month", allow_nil: true
 
+  def self.expensive
+    properties = Property.where("price_day >= 50")
+  end
+
+  def self.reasonable
+    properties = Property.where("price_day < 50 AND price_day > 20")
+  end
+
+  def self.cheap
+    properties = Property.where("price_day <= 20")
+  end
 
 end
+

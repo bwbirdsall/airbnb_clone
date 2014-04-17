@@ -36,3 +36,7 @@ a#logo:hover {
 .descriptiontext {
   color: slategray;
 }
+
+#prop-scan {
+  margin-top: 45px;
+}

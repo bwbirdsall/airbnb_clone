@@ -1,12 +1,28 @@
 <h3>Hello, Global Friend! Here are all of the properties you could rent.</h3>
+<div class="row" id="prop-scan">
+  <div class='col-sm-8'>
+    <% @properties.each do |property| %>
+      <p>
+      <%= link_to property.name, property_path(property) %><br/>
+      <% if !property.pictures.first.nil? %>
+        <%= link_to image_tag(property.pictures.first.image(:thumb)), property_path(property)   %><br />
+      <% end %>
+      <%= property.description %></p>
+    <% end %>
 
-<% @properties.each do |property| %>
-  <p>
-  <%= link_to property.name, property_path(property) %><br/>
-  <% if !property.pictures.first.nil? %>
-    <%= link_to image_tag(property.pictures.first.image(:thumb)), property_path(property)   %><br />
-  <% end %>
-  <%= property.description %></p>
-<% end %>
+    <%= link_to "Add a Property to Rent", new_property_path, class: 'btn btn-success btn-sm' %>
+  </div>
+  <div class="col-sm-4">
+    <span class="descriptiontext"><p>Filter Properties by:</p></span>
+    <p><%= link_to "Expensive", properties_path(:expensive => true), class: "btn btn-success btn-sm" %> </p>
+    <p><%= link_to "Reasonable", properties_path(:reasonable => true), class: "btn btn-success btn-sm" %> </p>
+    <p><%= link_to "Cheap", properties_path(:cheap => true), class: "btn btn-success btn-sm" %> </p>
+    <p><span class="descriptiontext">Property Type:</span>
+      <%= form_for Property.new, method: 'get' do |f|%>
+        <%= f.select :rental_type, options_for_select([["Entire Place"], ["Private Room"], ["Shared Room"]]) %>
+        <%= f.submit "Filter", class: 'btn btn-success btn-sm' %>
+      <% end %>
+    </p>
+  </div>
 
-<%= link_to "Add a Property to Rent", new_property_path, class: 'btn btn-success btn-sm' %>
+</div>

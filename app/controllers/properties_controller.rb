@@ -1,7 +1,25 @@
+require 'pry'
+
 class PropertiesController < ApplicationController
 
   def index
-    @properties = Property.all
+    if params[:expensive]
+      @properties = Property.expensive
+    elsif params[:reasonable]
+      @properties = Property.reasonable
+    elsif params[:cheap]
+      @properties = Property.cheap
+    elsif params[:property]
+      if params[:property][:rental_type] == "Entire Place"
+        @properties = Property.where(:rental_type => "Entire Place")
+      elsif params[:property][:rental_type] == "Private Room"
+        @properties = Property.where(:rental_type => "Private Room")
+      else
+        @properties = Property.where(:rental_type => 'Shared Room')
+      end
+    else
+      @properties = Property.all
+    end
   end
 
   def new
