@@ -24,7 +24,7 @@
     <span class="descriptiontext"><p>Filter Properties by:</p></span>
     <p>
       <%= form_for Property.new, method: 'get' do |f|%>
-        <p><%= f.label :location, "Location: " %>
+        <p><%= f.label :location, "Price Range: " %>
         <%= f.select :location, options_for_select([["All"], ["Expensive"], ["Reasonable"], ["Cheap"]]) %></p>
         <p><%= f.label :rental_type, "Rental Type: " %>
         <%= f.select :rental_type, options_for_select([["All"], ["Entire Place"], ["Private Room"], ["Shared Room"]]) %></p>
