@@ -1,4 +1,9 @@
-<h3>Hello, Global Friend! Here are all of the properties you could rent.</h3>
+<h3>Hello, <% if current_user %>
+  <%= current_user.username %>
+<% else %>
+  Global Friend
+<% end %>
+! Here are all of the properties you could rent.</h3>
 <div class="row" id="prop-scan">
   <div class='col-sm-8'>
     <% @properties.each do |property| %>
@@ -18,7 +23,12 @@
       </p>
     <% end %>
 
-    <%= link_to "Add a Property to Rent", new_property_path, class: 'btn btn-success btn-sm' %>
+    <p><%= link_to "Add a Property to Rent", new_property_path, class: 'btn btn-success btn-sm' %></p>
+
+    <% if can? :manage, User %>
+      <p><%= link_to "Manage Users", users_path, class: 'btn btn-primary btn-sm' %>
+    <% end %>
+
   </div>
   <div class="col-sm-4">
     <span class="descriptiontext"><p>Filter Properties by:</p></span>

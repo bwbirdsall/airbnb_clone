@@ -1,5 +1,3 @@
-require 'pry'
-
 class PropertiesController < ApplicationController
 
   def index
