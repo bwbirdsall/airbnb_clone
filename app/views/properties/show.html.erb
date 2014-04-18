@@ -5,7 +5,7 @@
 
 
 <% if @property.pictures.length > 0 %>
-  <p><span class="descriptiontext">Pictures of this Property:<br /></span><% @property.pictures.each do |picture| %>
+  <p><span class="descriptiontext">Pictures of this Property:<br /></span><% @property.pictures.shuffle.each do |picture| %>
     <%= image_tag picture.image(:medium) %>
   <% end %></p>
 <% end %>
