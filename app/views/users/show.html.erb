@@ -1,0 +1,19 @@
+<h3><%= @user.username %></h3>
+<p>Role: <%= @user.role %></p>
+<p>Properties:</p>
+<ul>
+  <% @user.properties.each do |property| %>
+    <li><%= link_to property.name, property_path(property) %></li>
+  <% end %>
+</ul>
+<% if @user.role == 'admin' %>
+  <%= form_for @user do |f|%>
+    <%= f.hidden_field :role, value: 'member' %>
+    <%= f.submit "Revoke Admin Privileges", class: 'btn btn-danger btn-sm', confirm: "Is it so bad that #{@user.username} no longer deserves these privileges?" %>
+  <% end %>
+<% else %>
+  <%= form_for @user do |f|%>
+    <%= f.hidden_field :role, value: 'admin' %>
+    <%= f.submit "Grant Admin Privileges", class: 'btn btn-warning btn-sm', confirm: "Are you certain giving #{@user.username} Admin privileges is wise?" %>
+  <% end %>
+<% end %>
