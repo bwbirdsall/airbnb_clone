@@ -47,6 +47,7 @@ class PropertiesController < ApplicationController
 
   def edit
     @property = Property.find(params[:id])
+    authorize! :update, @property
   end
 
   def update
@@ -60,6 +61,13 @@ class PropertiesController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @property = Property.find(params[:id])
+    @property.destroy
+    authorize! :destroy, @property
+    redirect_to root_url, notice: "Property Listing Removed."
   end
 
 private

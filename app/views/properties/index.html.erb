@@ -8,6 +8,14 @@
         <%= link_to image_tag(property.pictures.first.image(:thumb)), property_path(property)   %><br />
       <% end %>
       <%= property.description %></p>
+      <p>
+        <% if can? :update, @article %>
+          <%= link_to "Edit This Listing", edit_property_path(property), class: 'btn btn-warning btn-xs' %>
+        <% end %>
+        <% if can? :destroy, @article %>
+          <%= link_to "Destroy this Listing", property_path(property), :data => { :method => 'delete', :confirm => 'Are you sure you want to reduce this listing to scattered ions?' }, class: 'btn btn-danger btn-xs' %>
+        <% end %>
+      </p>
     <% end %>
 
     <%= link_to "Add a Property to Rent", new_property_path, class: 'btn btn-success btn-sm' %>
@@ -16,11 +24,11 @@
     <span class="descriptiontext"><p>Filter Properties by:</p></span>
     <p>
       <%= form_for Property.new, method: 'get' do |f|%>
-        <%= f.label :location, "Location: " %>
-        <%= f.select :location, options_for_select([["All"], ["Expensive"], ["Reasonable"], ["Cheap"]]) %>
-        <%= f.label :rental_type, "Rental Type: " %>
-        <%= f.select :rental_type, options_for_select([["All"], ["Entire Place"], ["Private Room"], ["Shared Room"]]) %>
-        <%= f.submit "Filter", class: 'btn btn-success btn-sm' %>
+        <p><%= f.label :location, "Location: " %>
+        <%= f.select :location, options_for_select([["All"], ["Expensive"], ["Reasonable"], ["Cheap"]]) %></p>
+        <p><%= f.label :rental_type, "Rental Type: " %>
+        <%= f.select :rental_type, options_for_select([["All"], ["Entire Place"], ["Private Room"], ["Shared Room"]]) %></p>
+        <p><%= f.submit "Filter", class: 'btn btn-success btn-sm' %></p>
       <% end %>
     </p>
   </div>

@@ -16,6 +16,7 @@ gem 'cancan'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'autonumeric-rails'
 gem 'money-rails'
+gem 'cancancan'
 
 group :development do
   gem 'better_errors'
