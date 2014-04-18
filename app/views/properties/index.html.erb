@@ -9,8 +9,8 @@
     <% @properties.each do |property| %>
       <p>
       <%= link_to property.name, property_path(property) %><br/>
-      <% if !property.pictures.first.nil? %>
-        <%= link_to image_tag(property.pictures.first.image(:thumb)), property_path(property)   %><br />
+      <% if !property.pictures.last.nil? %>
+        <%= link_to image_tag(property.pictures.last.image(:thumb)), property_path(property)   %><br />
       <% end %>
       <%= property.description %></p>
       <p>

@@ -26,5 +26,12 @@ class Property < ActiveRecord::Base
     properties = Property.where("price_day <= 20")
   end
 
+  def thumbnail(picture)
+    self.pictures.delete(picture)
+    thumb = self.pictures.new(:user_id => self.user_id, :property_id => self.id)
+    thumb.image = picture.image
+    thumb.save
+  end
+
 end
 

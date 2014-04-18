@@ -8,6 +8,8 @@ GlobalFriends::Application.routes.draw do
 
   resources :reviews
 
+  resources :pictures, only: [:show, :destroy, :update]
+
 
   root to: 'properties#index'
 end

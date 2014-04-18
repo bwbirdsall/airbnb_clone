@@ -10,6 +10,7 @@ class ReviewsController<ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
+    authorize! :destroy, @review
     @review.destroy
     redirect_to property_path(@review.property), notice: "That nasty review has been obliterated, thank goodness."
   end

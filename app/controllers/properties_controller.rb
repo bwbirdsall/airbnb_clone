@@ -63,8 +63,8 @@ class PropertiesController < ApplicationController
 
   def destroy
     @property = Property.find(params[:id])
-    @property.destroy
     authorize! :destroy, @property
+    @property.destroy
     redirect_to root_url, notice: "Property Listing Removed."
   end
 

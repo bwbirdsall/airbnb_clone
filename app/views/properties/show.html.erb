@@ -6,7 +6,11 @@
 
 <% if @property.pictures.length > 0 %>
   <p><span class="descriptiontext">Pictures of this Property:<br /></span><% @property.pictures.shuffle.each do |picture| %>
-    <%= image_tag picture.image(:medium) %>
+    <% if can? :update, picture %>
+      <%= link_to image_tag(picture.image(:medium)), picture_path(picture) %>
+    <% else %>
+      <%= image_tag picture.image(:medium) %>
+    <% end %>
   <% end %></p>
 <% end %>
 <p><span class="descriptiontext">Price per Day:</span> <%= humanized_money_with_symbol @property.price_per_day %></p>

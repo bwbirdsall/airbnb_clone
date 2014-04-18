@@ -1,0 +1,8 @@
+<%= image_tag @picture.image(:large) %>
+<% if can? :destroy, @picture %>
+  <p><%= link_to "Remove this picture", picture_path(@picture), :data => { :method => 'delete', :confirm => 'Are you sure you want to reduce this image to scattered ions?' }, class: 'btn btn-danger btn-sm' %>
+    <%= form_for @picture do |f| %>
+      <%= f.hidden_field :thumbnail, value: true %>
+      <%= f.submit "Make this Picture its Property's Thumbnail", :class => 'btn btn-success btn-sm' %>
+    <% end %></p>
+<% end %>

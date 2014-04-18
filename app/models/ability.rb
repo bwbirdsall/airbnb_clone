@@ -13,6 +13,12 @@ class Ability
     can :destroy, Review do |review|
         review.try(:user) == user
     end
+    can :destroy, Picture do |picture|
+        picture.try(:user) == user
+    end
+    can :update, Picture do |picture|
+        picture.try(:user) == user
+    end
 
     if user.role == "admin"
       can :manage, :all
