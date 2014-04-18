@@ -23,3 +23,44 @@
 <% if can? :destroy, @property %>
   <%= link_to "Destroy this Listing", property_path(@property), :data => { :method => 'delete', :confirm => 'Are you sure you want to reduce this listing to scattered ions?' }, class: 'btn btn-danger btn-sm' %>
 <% end %>
+
+<% if @property.reviews.length != 0 %>
+  <p><h3>Reviews of <%= @property.name %></h3>
+    <% @property.reviews.each do |review| %>
+      <p><b><%= review.header %></b><br />
+      <%= review.body %><br />
+      Reviewed by: <%= review.user.username %><br />
+      Reviewed on: <%= review.created_at.strftime("%m/%d/%Y") %><br />
+      <% if can? :destroy, @property %>
+        <%= link_to "Remove this Review", review_path(review), :data => { :method => 'delete', :confirm => 'Are you sure you want to deprive GlobalFriends™ of this review?' }, class: 'btn btn-danger btn-sm' %>
+      <% end %>
+    <% end %>
+  </p>
+  <p>
+
+  </p>
+<% end %>
+
+<% if current_user %>
+  <%= form_for @property.reviews.create do |f|%>
+  <fieldset>
+    <div class='col-lg-5'>
+      <legend>Review this Property</legend>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :property_id, value: @property.id %>
+      <div class='form-group'>
+        <%= f.label :header, "One Line Summary" %><br />
+        <%= f.text_field :header, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class='form-group'>
+        <%= f.label :body, "Your Full Review:" %><br />
+        <%= f.text_area :body, class: 'form-control' %>
+      </div>
+      <div class='form-group'>
+        <%= f.submit "Save Review", class: 'btn btn-success btn-sm' %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>
+
+<% end %>

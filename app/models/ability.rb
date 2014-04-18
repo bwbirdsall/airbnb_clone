@@ -10,6 +10,9 @@ class Ability
     can :destroy, Property do |property|
         property.try(:user) == user
     end
+    can :destroy, Review do |review|
+        review.try(:user) == user
+    end
 
     if user.role == "admin"
       can :manage, :all

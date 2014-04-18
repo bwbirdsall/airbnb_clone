@@ -1,0 +1,21 @@
+<%= form_for property_reviews_path(@property) do |f|%>
+  <%= render 'layouts/errors', object: object %>
+  <fieldset>
+    <div class='col-lg-5'>
+      <legend>Review this Property</legend>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :property_id, value: @property.id %>
+      <div class='form-group'>
+        <%= f.label :header, "One Line Summary" %><br />
+        <%= f.text_field :header, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class='form-group'>
+        <%= f.label :body, "Your Full Review:" %><br />
+        <%= f.text_area :body, class: 'form-control' %>
+      </div>
+      <div class='form-group'>
+        <%= f.submit "Save Review", class: 'btn btn-success btn-sm' %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

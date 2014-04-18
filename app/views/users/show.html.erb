@@ -2,10 +2,30 @@
 <p>Role: <%= @user.role %></p>
 <p>Properties:</p>
 <ul>
-  <% @user.properties.each do |property| %>
-    <li><%= link_to property.name, property_path(property) %></li>
+  <% if @user.properties.length == 0 %>
+    <li><%= @user.username %> has not (yet) added any properties.</li>
+  <% else %>
+    <% @user.properties.each do |property| %>
+      <li><%= link_to property.name, property_path(property) %></li>
+    <% end %>
   <% end %>
 </ul>
+Reviews:
+<ul>
+  <% if @user.reviews.length == 0 %>
+    <li><%= @user.username %> has not (yet) reviewed any properties.</li>
+  <% else %>
+    <% @user.reviews.each do |review| %>
+      <li>
+        <p><b><%= review.header %></b><br />
+        <%= review.body %><br />
+        Reviewed by: <%= review.user.username %><br />
+        Reviewed on: <%= review.created_at.strftime("%m/%d/%Y") %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
 <% if @user.role == 'admin' %>
   <%= form_for @user do |f|%>
     <%= f.hidden_field :role, value: 'member' %>
