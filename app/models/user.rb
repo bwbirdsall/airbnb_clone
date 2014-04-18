@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :properties
   has_many :pictures
+  has_many :reviews
 
   after_create :send_signup_confirmation
 
