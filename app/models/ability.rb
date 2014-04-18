@@ -4,7 +4,12 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
     can :read, :all
-
+    can :update, Property do |property|
+        property.try(:user) == user
+    end
+    can :destroy, Property do |property|
+        property.try(:user) == user
+    end
 
     if user.role == "admin"
       can :manage, :all

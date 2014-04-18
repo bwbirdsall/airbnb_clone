@@ -17,9 +17,9 @@
   <p><span class="descriptiontext">Price per Month:</span>  <%= humanized_money_with_symbol @property.price_per_month %></p>
 <% end %>
 <p><%= link_to "Return to GlobalFriends Home", root_url, class: 'btn btn-success btn-sm' %>
-<% if can? :update, @article %>
+<% if can? :update, @property %>
   <%= link_to "Edit Your Listing", edit_property_path(@property), class: 'btn btn-warning btn-sm' %>
 <% end %>
-<% if can? :destroy, @article %>
+<% if can? :destroy, @property %>
   <%= link_to "Destroy this Listing", property_path(@property), :data => { :method => 'delete', :confirm => 'Are you sure you want to reduce this listing to scattered ions?' }, class: 'btn btn-danger btn-sm' %>
 <% end %>
