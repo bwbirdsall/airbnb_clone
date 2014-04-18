@@ -4,4 +4,6 @@ class Review<ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :property_id, presence: true
+  validates :header, presence: true
+  validates :body, presence: true
 end
